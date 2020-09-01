@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="books_by_geographical_setting" style="width: 35%; float: left; padding: 20px">
+        <h3>Ambientazione</h3>
+        <canvas id="canvas_books_by_geographical_setting"></canvas>
+    </div>
+    <div id="books_by_author_nationality" style="width: 35%; float: left; padding: 20px">
+        <h3>Nazionalita' degli autori (esterno) / Volume di libri letti per nazionalita' (interno)</h3>
+        <canvas id="canvas_books_by_author_nationality"></canvas>
+    </div>
+    <div id="books_by_author_gender" style="width: 35%; float: left; padding: 20px">
+        <h3>Sesso degli autori (esterno) / Volume di libri letti per sesso (interno)</h3>
+        <canvas id="canvas_books_by_author_gender"></canvas>
+    </div>
+    <div id="books_by_author_gender_by_year" style="width: 35%; float: left; padding: 20px">
+        <h3>Volume di libri letti per sesso per anno</h3>
+        <canvas id="canvas_books_by_author_gender_by_year"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+
+        var custom_colors = [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            '#4dc9f6',
+            '#f67019',
+            '#f53794',
+            '#537bc4',
+            '#acc236',
+            '#166a8f',
+            '#00a950',
+            '#58595b',
+            '#8549ba',
+        ]
+
+        var config_books_by_geographical_setting = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: {{ books_by_geographical_setting_data|safe }},
+                    backgroundColor: custom_colors,
+                }],
+                labels: {{ books_by_geographical_setting_labels|safe }}
+            },
+            options: {
+                responsive: true,
+                circumference: Math.PI,
+                rotation: -Math.PI
+            }
+        };
+        var config_books_by_author_nationality = {
+            type: 'doughnut',
+            data: {
+                datasets: [
+                    {
+                        data: {{ author_nationality_data|safe }},
+                        backgroundColor: custom_colors,
+                        label: 'Autori',
+                        labels: {{ author_nationality_labels|safe }}
+                    },
+                    {
+                        data: {{ books_by_author_nationality_data|safe }},
+                        backgroundColor: custom_colors,
+                        label: 'Libri',
+                        labels: {{ books_by_author_nationality_labels|safe }}
+                    }
+
+                ],
+                labels: {{ author_nationality_labels|safe }}
+            },
+            options: {
+                responsive: true,
+                circumference: Math.PI,
+                rotation: -Math.PI,
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            var dataset = data.datasets[tooltipItem.datasetIndex];
+                            var index = tooltipItem.index;
+                            return dataset.labels[index] + ": " + dataset.data[index];
+                        }
+                    }
+                }
+            }
+        };
+        var config_books_by_author_gender = {
+            type: 'doughnut',
+            data: {
+                datasets: [
+                    {
+                        data: {{ author_gender_data|safe }},
+                        backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+                        label: 'Autori',
+                        labels: {{ author_gender_labels|safe }}
+                    },
+                    {
+                        data: {{ books_by_author_gender_data|safe }},
+                        backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+                        label: 'Libri',
+                        labels: {{ books_by_author_gender_labels|safe }}
+                    }
+
+                ],
+                labels: {{ author_gender_labels|safe }}
+            },
+            options: {
+                responsive: true,
+                circumference: Math.PI,
+                rotation: -Math.PI,
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            var dataset = data.datasets[tooltipItem.datasetIndex];
+                            var index = tooltipItem.index;
+                            return dataset.labels[index] + ": " + dataset.data[index];
+                        }
+                    }
+                }
+            }
+        };
+
+        var config_books_by_author_gender_by_year = {
+            type: 'bar',
+            data: {
+                datasets: [
+                    {
+                        label: 'Uomini',
+                        data: {{ books_by_author_gender_by_year_male_data | safe }},
+                        backgroundColor: 'rgb(54, 162, 235)',
+                    },
+                    {
+                        label: 'Donne',
+                        data: {{ books_by_author_gender_by_year_female_data | safe }},
+                        backgroundColor: 'rgb(255, 99, 132)',
+                    }
+
+                ],
+                labels: {{  books_by_year_labels | safe }}
+            },
+            options: {
+                responsive: true,
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+
+            }
+        };
+
+
+        window.onload = function () {
+            var ctx_books_by_geographical_setting = document.getElementById('canvas_books_by_geographical_setting').getContext('2d');
+            window.w_books_by_geographical_setting = new Chart(ctx_books_by_geographical_setting, config_books_by_geographical_setting);
+            var ctx_books_by_author_nationality = document.getElementById('canvas_books_by_author_nationality').getContext('2d');
+            window.w_books_by_author_nationality = new Chart(ctx_books_by_author_nationality, config_books_by_author_nationality);
+            var ctx_books_by_author_gender = document.getElementById('canvas_books_by_author_gender').getContext('2d');
+            window.w_books_by_author_gender = new Chart(ctx_books_by_author_gender, config_books_by_author_gender);
+            var ctx_books_by_author_gender_by_year = document.getElementById('canvas_books_by_author_gender_by_year').getContext('2d');
+            window.w_books_by_author_gender_by_year = new Chart(ctx_books_by_author_gender_by_year, config_books_by_author_gender_by_year);
+        };
+
+
+    </script>
+
+{% endblock %}

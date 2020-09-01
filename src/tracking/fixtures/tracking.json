@@ -1,0 +1,180 @@
+[
+  {
+    "model": "tracking.genre",
+    "pk": "02d687ee-7001-406b-acb3-6744f8cf8a08",
+    "fields": {
+      "created_on": "2020-05-18T11:57:11.563Z",
+      "updated_on": "2020-05-18T11:57:11.563Z",
+      "name": "Romanzo"
+    }
+  },
+  {
+    "model": "tracking.genre",
+    "pk": "0d543005-d317-4b14-9aaa-4e427fbc8cad",
+    "fields": {
+      "created_on": "2020-05-18T11:57:16.181Z",
+      "updated_on": "2020-05-18T11:57:16.181Z",
+      "name": "Ucronia"
+    }
+  },
+  {
+    "model": "tracking.language",
+    "pk": "05fc5e9c-22cf-4b45-8d6f-d9355bbe21e4",
+    "fields": {
+      "created_on": "2020-05-18T09:32:31.331Z",
+      "updated_on": "2020-05-18T09:32:31.331Z",
+      "name": "Francese"
+    }
+  },
+  {
+    "model": "tracking.language",
+    "pk": "7dbbe35d-e615-4b3f-8cdc-68e42d2c661d",
+    "fields": {
+      "created_on": "2020-05-18T09:13:16.915Z",
+      "updated_on": "2020-05-18T09:13:16.915Z",
+      "name": "Italiano"
+    }
+  },
+  {
+    "model": "tracking.language",
+    "pk": "827b3803-ad8c-4355-bdea-77a066c7897d",
+    "fields": {
+      "created_on": "2020-05-18T09:32:14.183Z",
+      "updated_on": "2020-05-18T09:32:14.183Z",
+      "name": "Inglese"
+    }
+  },
+  {
+    "model": "tracking.language",
+    "pk": "9e3127a5-f28b-4363-9ed0-271c65dce336",
+    "fields": {
+      "created_on": "2020-05-18T09:58:32.013Z",
+      "updated_on": "2020-05-18T09:58:32.013Z",
+      "name": "Giapponese"
+    }
+  },
+  {
+    "model": "tracking.language",
+    "pk": "d62e3e74-f96d-48c4-a7e6-09cfdce831c8",
+    "fields": {
+      "created_on": "2020-05-18T09:32:35.439Z",
+      "updated_on": "2020-05-18T09:32:35.439Z",
+      "name": "Spagnolo"
+    }
+  },
+  {
+    "model": "tracking.publisher",
+    "pk": "0217d9ec-5fb8-45cc-a91f-394a7be8a789",
+    "fields": {
+      "created_on": "2020-05-18T11:59:32.847Z",
+      "updated_on": "2020-05-18T11:59:32.847Z",
+      "name": "Einaudi"
+    }
+  },
+  {
+    "model": "tracking.collection",
+    "pk": "1b654497-e2f8-4e97-8dda-0f3a90ac6f0f",
+    "fields": {
+      "created_on": "2020-05-18T12:16:22.391Z",
+      "updated_on": "2020-05-18T12:16:22.391Z",
+      "name": "Supercoralli"
+    }
+  },
+  {
+    "model": "tracking.prize",
+    "pk": "4ab88f50-1b26-40e7-8885-977596521b2c",
+    "fields": {
+      "created_on": "2020-05-18T12:14:47.422Z",
+      "updated_on": "2020-05-18T12:14:47.422Z",
+      "name": "Finalista Premio Strega"
+    }
+  },
+  {
+    "model": "tracking.prize",
+    "pk": "8ffea711-7d8d-4487-a524-a5d59344b28b",
+    "fields": {
+      "created_on": "2020-05-18T12:14:38.954Z",
+      "updated_on": "2020-05-18T12:14:38.954Z",
+      "name": "Vincitore Premio Strega"
+    }
+  },
+  {
+    "model": "tracking.prize",
+    "pk": "a4d67e66-3f29-4996-82ad-9412314892d9",
+    "fields": {
+      "created_on": "2020-05-18T12:15:09.448Z",
+      "updated_on": "2020-05-18T12:15:09.449Z",
+      "name": "Finalista Premio Campiello"
+    }
+  },
+  {
+    "model": "tracking.prize",
+    "pk": "d1801c55-5557-454f-b30d-5306c6626259",
+    "fields": {
+      "created_on": "2020-05-18T12:15:01.479Z",
+      "updated_on": "2020-05-18T12:15:01.479Z",
+      "name": "Vincitore Premio Campiello"
+    }
+  },
+  {
+    "model": "tracking.person",
+    "pk": "31557b2d-5d0e-405a-a644-046ffb6349a6",
+    "fields": {
+      "created_on": "2020-05-18T09:46:40.815Z",
+      "updated_on": "2020-05-18T09:46:40.815Z",
+      "first_name": "Haruki",
+      "last_name": "Murakami",
+      "gender": "uomo",
+      "country": "JP",
+      "date_of_birth": "1949-01-12",
+      "date_of_death": null
+    }
+  },
+  {
+    "model": "tracking.book",
+    "pk": "869ea94b-0443-4d21-917a-9ae5522ab478",
+    "fields": {
+      "created_on": "2020-05-18T09:51:53.858Z",
+      "updated_on": "2020-05-18T12:16:30.103Z",
+      "title": "1Q84",
+      "author": "31557b2d-5d0e-405a-a644-046ffb6349a6",
+      "language": "7dbbe35d-e615-4b3f-8cdc-68e42d2c661d",
+      "genre": "02d687ee-7001-406b-acb3-6744f8cf8a08",
+      "sub_genre": "0d543005-d317-4b14-9aaa-4e427fbc8cad",
+      "publish_year": 2009,
+      "publisher": "0217d9ec-5fb8-45cc-a91f-394a7be8a789",
+      "collection": "1b654497-e2f8-4e97-8dda-0f3a90ac6f0f",
+      "rating": 3.0,
+      "read_start_date": "2020-05-13",
+      "read_end_date": null,
+      "suggested_by": "autonoma",
+      "suggested_date": "2020-05-05",
+      "original_language": "9e3127a5-f28b-4363-9ed0-271c65dce336",
+      "original_title": "\u3044\u3061\u304d\u3085\u3046\u306f\u3061\u3088\u3093, Ichi-ky\u016b-hachi-yon",
+      "format": "ebook",
+      "format_details": "kindle",
+      "pages": 772,
+      "reader": null,
+      "reading_time": null,
+      "prizes": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$M7gPFPlGpSlD$qCAv4HeX0voUYI3BPRnAFChVRZppGIkbAdJiZEjMW9s=",
+      "last_login": "2020-05-18T11:57:02.925Z",
+      "is_superuser": true,
+      "username": "ale",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-05-18T09:12:52.671Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

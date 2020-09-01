@@ -1,0 +1,5 @@
+index/
+db/
+uploads/
+__pycache__
+.idea/

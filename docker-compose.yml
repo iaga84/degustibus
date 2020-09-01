@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  degustibus-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.0
+    restart: on-failure
+    environment:
+      - node.name=es01
+      - bootstrap.memory_lock=true
+      - cluster.initial_master_nodes=es01
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - type: bind
+        source: ${DATA_ELASTIC}
+        target: /usr/share/elasticsearch/data
+    ports:
+      - 9202:9200
+  degustibus-kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.0
+    depends_on:
+      - degustibus-elasticsearch
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://degustibus-elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://degustibus-elasticsearch:9200
+  degustibus:
+    restart: on-failure
+    build:
+      context: ./src
+    volumes:
+      - type: bind
+        source: ${DATA_DB}
+        target: /db
+    command: ["sh", "start.sh"]
+#    depends_on:
+#      - degustibus-elasticsearch
+#      - degustibus-kibana
+    ports:
+      - 6969:6969
+
