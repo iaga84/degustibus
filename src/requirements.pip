@@ -1,5 +1,6 @@
 django-countries==6.1.2
 django-admin-list-filter-dropdown==1.0.3
 django-extensions==2.2.9
+elasticsearch
 pillow==7.1.2
 Django==3.0.6

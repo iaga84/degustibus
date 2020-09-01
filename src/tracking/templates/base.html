@@ -1,16 +1,38 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}Zazzi's Statistics{% endblock %}</title>
+    <title>Degustibus</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#refresh_elastic").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    url: "refresh_elastic",
+                    success: function (result) {
+                    },
+                    error: function (result) {
+                    }
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>
 
-  <nav>
+<nav>
     <a href="/admin">ADMIN</a>
-  </nav>
+</nav>
+<button id="refresh_elastic">
+    REFRESH ELASTIC
+</button>
 
-  {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 
 </body>
 </html>
+
+
