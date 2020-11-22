@@ -5,7 +5,7 @@ from elasticsearch import Elasticsearch
 
 from .models import Book
 
-ES = Elasticsearch(['degustibus-elasticsearch:9200'])
+ES = Elasticsearch(['192.168.2.145:9200'])
 DOCUMENTS_INDEX = 'degustibus'
 
 
