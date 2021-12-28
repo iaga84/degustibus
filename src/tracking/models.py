@@ -169,6 +169,8 @@ class Book(BaseModel):
     reading_time = models.FloatField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
     attachments = models.ManyToManyField(Attachment, blank=True)
+    illustrator = models.ForeignKey(Person, on_delete=models.DO_NOTHING, related_name='illustrator_books', null=True, blank=True)
+
 
     def __str__(self):
         return '{} ({}, {})'.format(self.title, self.author, self.publish_year)

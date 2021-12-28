@@ -77,7 +77,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': '/db/degustibus.db',
-        # 'NAME': '/degustibus/degustibus.db',
+        # 'NAME': '../db/degustibus.db',
     }
 }
 
