@@ -146,6 +146,7 @@ class Book(BaseModel):
     title = models.CharField(max_length=1024)
     author = models.ForeignKey(Person, on_delete=models.DO_NOTHING, related_name='author_books')
     language = models.ForeignKey(Language, on_delete=models.DO_NOTHING, related_name='language_books')
+    illustrator = models.ForeignKey(Person, on_delete=models.DO_NOTHING, related_name='illustrator_books', null=True, blank=True)
     geographical_setting = CountryField(null=True, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.DO_NOTHING, related_name='genre_books', null=True, blank=True)
     sub_genre = models.ForeignKey(Genre, on_delete=models.DO_NOTHING, related_name='sub_genre_books', null=True, blank=True)
@@ -169,7 +170,6 @@ class Book(BaseModel):
     reading_time = models.FloatField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
     attachments = models.ManyToManyField(Attachment, blank=True)
-    illustrator = models.ForeignKey(Person, on_delete=models.DO_NOTHING, related_name='illustrator_books', null=True, blank=True)
 
 
     def __str__(self):
