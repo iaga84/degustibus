@@ -1,15 +1,24 @@
 from django.shortcuts import render
 import logging
 
-from elasticsearch import Elasticsearch
+from opensearchpy import OpenSearch
 
 from .models import Book
 
-ES = Elasticsearch(['192.168.2.145:9200'])
+auth = ('admin', 'admin')
+ES = OpenSearch(
+    hosts=['192.168.2.145:9200'],
+    # auth=auth,
+    use_ssl=False,
+    verify_certs=False,
+    ssl_assert_hostname=False,
+    ssl_show_warn=False,
+)
 DOCUMENTS_INDEX = 'degustibus'
 
 
 def initialize_index():
+    print('Initializing Index')
     body_documents = {
         "settings": {
             "number_of_shards": 5
@@ -53,6 +62,7 @@ def initialize_index():
 
 
 def reset_index():
+    print("Deleting previous index")
     ES.indices.delete(index=DOCUMENTS_INDEX, ignore=404)
     initialize_index()
 
@@ -65,6 +75,7 @@ def home(request):
 def refresh_elastic(request):
     reset_index()
     for book in Book.objects.all():
+        print(f"Adding book: {book}")
         record = {
             "title": book.title,
             "author_name": str(book.author),

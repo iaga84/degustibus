@@ -16,6 +16,7 @@ class PersonAdmin(BaseAdmin):
         ('country', DropdownFilter),
         ('gender', DropdownFilter),
     )
+    search_fields = ["first_name", "last_name"]
 
 
 @admin.register(Book)
@@ -28,6 +29,7 @@ class BookAdmin(BaseAdmin):
         ('format', DropdownFilter),
         ('publisher__name', DropdownFilter),
     )
+    search_fields = ['title']
     date_hierarchy = 'read_end_date'
     ordering = ['-read_end_date', 'title']
 
@@ -49,7 +51,7 @@ class FormatDetailAdmin(BaseAdmin):
 
 @admin.register(Publisher)
 class PublisherAdmin(BaseAdmin):
-    pass
+    search_fields = ["name"]
 
 
 @admin.register(Source)
@@ -59,7 +61,7 @@ class SourceAdmin(BaseAdmin):
 
 @admin.register(Collection)
 class CollectionAdmin(BaseAdmin):
-    pass
+    search_fields = ["name"]
 
 
 @admin.register(Prize)
